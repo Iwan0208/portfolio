@@ -1,0 +1,135 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+  
+footer {
+background-color: #d92828; /* Rouge pour le fond */
+padding: 40px 0;
+border-radius: 10px 10px 0 0;
+color: white;
+}
+
+.conteneur {
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+max-width: 1200px;
+margin: 0 auto;
+}
+
+.mentions ul {
+list-style-type: none;
+padding: 0;
+margin: 0;
+}
+
+.mentions ul li {
+margin: 10px 0;
+list-style-type: none;
+}
+
+.mentions ul li a {
+color: black;
+text-decoration: none;
+font-size: 1em;
+}
+
+.mentions ul li a:hover {
+text-decoration: underline;
+}
+
+.sponsors {
+text-align: center;
+background-color: white; /* Fond blanc */
+padding: 20px; /* Espace intérieur */
+border-radius: 10px; /* Coins arrondis */
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.sponsors p {
+font-weight: bold;
+margin-bottom: 10px;
+color: black;
+}
+
+.sponsors-logos {
+display: flex;
+gap: 15px;
+flex-wrap: wrap;
+justify-content: center;
+}
+
+.sponsors-logos img {
+max-height: 50px;
+width: auto;
+margin: 5px;
+}
+
+.mascotte img {
+max-height: 200px;
+background-color: white;
+border-radius: 10px;
+}
+
+
+.mentions,
+.sponsors,
+.mascotte {
+    margin-bottom: 20px;
+}
+
+.mentions,
+.sponsors {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.mentions ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.mentions ul li {
+  margin: 10px 0;
+  color: black;
+}
+
+.sponsors {
+  text-align: center;
+}
+
+.sponsors p {
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: black;
+}
+
+.sponsors-logos {
+  display: flex;
+  gap: 15px;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.sponsors-logos img {
+  max-height: 50px;
+  width: auto; /* Garde les proportions */
+  margin: 5px; /* Espacement autour des images */
+}
+
+.conteneur {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 20px; /* Espacement entre les sections */
+}
+
+.mentions {
+    text-align: center;
+}

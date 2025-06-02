@@ -1,0 +1,109 @@
+/* HEADER */
+
+header nav {
+    height: 8em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    background-color: #134AB5;
+    border-radius: 0 0 20px 20px;
+}
+
+/* Barre de recherche */
+header nav div:last-child {
+    padding:1em;
+    border-radius: 20px;
+    background-color: #D9D9D9;
+}
+
+/* logos */
+nav:first-child div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+img {
+    border-radius: 100%;
+    background-color: #D9D9D9;
+    width: 88.5px;
+}
+
+
+@media  screen and (min-width: 880px) {
+        
+    header nav ul {
+        
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        align-items: center;
+        height: 4em;
+        margin: 0;
+        padding: 0;
+        border-radius: 20px;
+        background-color: #F6F5F4;
+    }
+    
+    header nav li {
+        height: 2em;
+        width: 18em;
+        display: inline-block;
+        list-style-type: none;
+        text-align: center;
+        background-color: #D9D9D9;
+        margin: 2px;
+        border-radius: 20px;
+    }
+
+
+    /* Sous listes */
+    header nav li ul {
+        position: relative;
+        right:1.4em;
+        top: 0.5em;
+
+        border: 1px solid black;
+
+        z-index: 1;
+        display: none;
+        transition: display, color 1s, ease, 0.1s;
+    }
+
+    header nav li:hover ul {
+        display: flex;
+        flex-direction: column;
+        height: 600%;
+        width: 120%;
+    }
+}
+
+@media screen and (max-width: 879px) {
+    ul {
+        display: none;
+    }
+    
+}
+
+@media screen and (min-width: 1300px) {
+    ul {
+        width: 60em;
+    }
+
+    header nav li {
+        width: 18em;
+    }
+}
+
+@media screen and (min-width: 880px) and (max-width: 1300px) {
+    ul {
+        width: 35em;
+    }
+
+    header nav li {
+        width: 11em;
+    }
+}
