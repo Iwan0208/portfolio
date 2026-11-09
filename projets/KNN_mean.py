@@ -128,5 +128,5 @@ def main(k) :
 
     return liste_moyennes
 
-points = main(2)
+points = main(10)
 lis_affiche(points)

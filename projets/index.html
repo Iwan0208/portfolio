@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+    <head>
+        <link href="../style.css" rel="stylesheet">
+        <title>VILLALARD Iwan - Mes compétences</title>
+    </head>
+
+    <body>
+        <header>
+            <ul>
+                <a href=".."><li>Accueil</li></a>
+                <a href=""><li>Projets</li></a>
+                <a href="#footer"><li>Me contacter</li></a>
+            </ul>
+
+            <div>
+                <a href="../images/CV.pdf" target="_blank">CV</a>
+            </div>
+            
+        </header>
+        <br id="sous_header">
+
+        <main>
+            <h1>Mes compétences et projets</h1>
+
+            <nav>
+                <a href="projets.html">Voir tous les projets</a>
+            </nav>
+
+        </main>
+
+        <script>
+            function getQueryVariable(variable) {
+                var query = window.location.search.substring(1);
+                var vars = query.split("&");
+                for (var i=0;i<vars.length;i++) {
+                    var pair = vars[i].split("=");
+                    if (pair[0] == variable) {
+                        return pair[1];
+                    }
+                } 
+                return undefined;
+            }
+
+            function capitalize(string) {
+                return string[0].toUpperCase() + string.slice(1);
+            }
+        </script>
+        
+        <script>
+            const TYPE_ICONE = {
+                "image": "../icon/image.png",
+                "document": "../icon/doc.png",
+                "lien": "../icon/lien.png",
+                "git": "../icon/logo_github.svg",
+                "video": "../icon/video.png",
+                "code": "../icon/doc.png"
+            };
+
+            const NOM_COMP = {
+                1: "Développer une application",
+                4: "Gérer les données de l'information",
+                5: "Conduire un projet",
+                2: "Optimiser des applications informatiques",
+                3: "Administrer des systèmes informatiques communicants complexes",
+                6: "Travailler dans une équipe informatique"
+            }
+
+            // crée le menu de navigation
+            let navComp = document.querySelector("nav");
+            Object.keys(NOM_COMP).forEach(numComp => {
+                let lien = document.createElement("a");
+                lien.setAttribute("onclick", `chargerPage(${numComp})`);
+                lien.textContent = NOM_COMP[numComp];
+                navComp.appendChild(lien);
+            });
+            
+            let listeProjets = {};
+
+            // charge tous les projets d'une compétence sur la page
+            function chargerComp(num_comp) {
+                let section = document.createElement("section");
+                document.querySelector("main").appendChild(section);
+                let titreComp = document.createElement("h2");
+                titreComp.textContent = NOM_COMP[num_comp];
+                section.appendChild(titreComp);
+
+                listeProjets[num_comp].forEach(projet => {
+                    let eltProjet = document.createElement("article");
+                    section.appendChild(eltProjet);
+                    eltProjet.classList.add("comp");
+                    
+                    // Partie description de base
+                    eltProjet.innerHTML = `
+                        <div class="description">
+                            <div>
+                                <h3>` + projet["nom"] + ` <small>(` + projet["date"] + `)</small></h3>
+                                <p>` + projet["titre"] + `</p>
+                                <p>` + projet["description"] + `</p>
+                            </div>
+                        </div>
+                        <hr>`;
+
+                    // Partie outils et ressources                 
+
+                    let divMedias = document.createElement("div");
+                    eltProjet.appendChild(divMedias);
+                    divMedias.classList.add("partie_medias");
+
+                    // Partie outils
+                    let outils = projet["outils"];
+                    if (outils && outils.length > 0) {
+                        let divOutils = document.createElement("div");
+                        divMedias.appendChild(divOutils);
+                        divOutils.classList.add("partie_outils");
+
+                        divOutils.innerHTML += "<h2>Outils utilisés</h2>";
+
+                        divOutils.appendChild(document.createElement("ul"));
+                        divOutils = divOutils.querySelector("ul");
+
+                        outils.forEach(outil => {
+                            let nomOutil = capitalize(outil.split(".")[0]);
+                            divOutils.innerHTML += `<li><img class="icon_outil" title="${nomOutil}" src="../icon/logo_${outil}">${nomOutil}</li>`;
+                        });
+                    }
+
+                    // Partie ressources
+                    let ressources = projet["ressources"];
+                    if (ressources && ressources.length > 0) {
+                        if (outils && outils.length > 0) {
+                            divMedias.appendChild(document.createElement("hr"));
+                        }
+
+                        let divRessources = document.createElement("div");
+                        divMedias.appendChild(divRessources);
+                        divRessources.classList.add("partie_ressources");
+
+                        let h2 = document.createElement("h2");
+                        h2.textContent = "Ressources disponibles";
+                        divRessources.appendChild(h2);
+
+                        divRessources.appendChild(document.createElement("ul"));
+                        divRessources = divRessources.querySelector("ul");
+
+                        let mediaMis = 0;
+                        const MAX_MEDIAS = 1;
+                        ressources.forEach(res => {
+                            let resMisEnMedia = false;
+
+                            if (mediaMis < MAX_MEDIAS) {
+                                if (res["type"] == "image") {
+                                    mediaMis++;
+                                    resMisEnMedia = true;
+
+                                    let figure = document.createElement("figure");
+                                    figure.innerHTML = `
+                                        <img class="img_projet" src="${res["chemin"]}" alt="${res["nom"]}">
+                                        <figcapture>${capitalize(res["nom"])}</figcapture>`;
+                                        
+                                    eltProjet.querySelector(".description").appendChild(figure);
+
+                                    if (ressources.length <= MAX_MEDIAS) {
+                                        // ça veut dire que toutes les ressources ont été mises en média en dessous
+                                        divMedias.removeChild(divMedias.querySelector(".partie_ressources"));
+                                        let hr = divMedias.querySelector("hr");
+                                        if (hr) divMedias.removeChild(hr);
+                                    }
+                                }
+                            }
+
+                            if (!resMisEnMedia) {
+                                divRessources.innerHTML += `<a class="ressource" title="Voir ` + res["nom"] + `" href="` + res["chemin"] + `"><img src="` + TYPE_ICONE[res["type"]] + `"></a>`;
+                            }
+                        });
+                    }
+
+                    eltProjet.appendChild(document.createElement("hr"))
+                });
+            }
+
+            // charge l'entiereté des compétences qu'on veut afficher sur la page
+            function chargerPage(numComp) {
+                let section;
+                let main = document.querySelector("main");
+                while ((section = main.querySelector("section")) != undefined) {
+                    main.removeChild(section);
+                }
+
+                if (numComp == undefined) {
+                    Object.keys(listeProjets).forEach(numComp => chargerComp(numComp));
+                } else {
+                    chargerComp(numComp);
+                }
+            }
+        </script>
+
+        <script type="module">
+            import {jsonkinezPAdûgizonn} from "./projets.js";
+
+            // Charge les projets dans une liste
+            jsonkinezPAdûgizonn.forEach(projet => {
+                if (listeProjets[projet["competence"]]) {
+                    listeProjets[projet["competence"]].push(projet);
+                } else {
+                    listeProjets[projet["competence"]] = [projet];
+                }
+            });
+            
+            const MOIS = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "aout", "septembre", "octobre", "novembre", "décembre"]
+
+            Object.keys(listeProjets).forEach(key => {
+                listeProjets[key].sort((projetA, projetB) => {
+                    let dateA = projetA["date"];
+                    let dateB = projetB["date"];
+
+                    let valDateA = ("0" + MOIS.indexOf(dateA.split(" ")[0])).slice(-2); // récup la val du mois, et le met en 2 chiffres "00", "12"..
+                    valDateA = dateA.split(" ")[1] + valDateA;
+                    let valDateB = ("0" + MOIS.indexOf(dateB.split(" ")[0])).slice(-2);
+                    valDateB = dateB.split(" ")[1] + valDateB;
+
+                    return Number.parseInt(valDateB) - Number.parseInt(valDateA);
+                });
+            });
+            
+            let numComp = getQueryVariable("comp");
+            chargerPage(numComp);
+        </script>
+
+        <footer id="footer">
+            <h3>Contacts</h3>
+            <a href="mailto:villalard.iwan@outlook.com">Email <img class="icon" src="images/icone_mail.png"></a>
+            <a href="https://www.linkedin.com/in/iwan-villalard-727717356/">LinkedIn <img class="icon" src="images/mail_linkedin.png"></a>
+        </footer>
+    </body>
+</html>
+
+<!-- 
+comp1: Développer une application
+comp2: Optimiser des applications informatiques
+comp3: Administrer des systèmes informatiques communicants complexes
+comp4: Gérer les données de l'information
+comp5: Conduire un projet
+comp6: Travailler dans une équipe informatique
+-->
