@@ -23,7 +23,7 @@
             <h1>Mes compétences et projets</h1>
 
             <nav>
-                <a href="projets.html">Voir tous les projets</a>
+                <a href=".">Voir tous les projets</a>
             </nav>
 
         </main>
@@ -74,17 +74,21 @@
                 navComp.appendChild(lien);
             });
             
-            let listeProjets = {};
+            let listeProjets;
 
             // charge tous les projets d'une compétence sur la page
-            function chargerComp(num_comp) {
+            function chargerComp(numComp, extend = false) {
                 let section = document.createElement("section");
                 document.querySelector("main").appendChild(section);
                 let titreComp = document.createElement("h2");
-                titreComp.textContent = NOM_COMP[num_comp];
+                titreComp.textContent = NOM_COMP[numComp];
                 section.appendChild(titreComp);
 
-                listeProjets[num_comp].forEach(projet => {
+                listeProjets.forEach(projet => {
+                    if (numComp != projet["competence"] && (!extend || !projet["sous-competences"].includes(numComp))){
+                        return;
+                    }
+
                     let eltProjet = document.createElement("article");
                     section.appendChild(eltProjet);
                     eltProjet.classList.add("comp");
@@ -186,43 +190,33 @@
                     main.removeChild(section);
                 }
 
-                if (numComp == undefined) {
-                    Object.keys(listeProjets).forEach(numComp => chargerComp(numComp));
+                if (Number.isNaN(numComp)) {
+                    Object.keys(NOM_COMP).forEach(numComp => chargerComp(Number.parseInt(numComp)));
                 } else {
-                    chargerComp(numComp);
+                    chargerComp(numComp, extend=true);
                 }
             }
         </script>
 
         <script type="module">
             import {jsonkinezPAdûgizonn} from "./projets.js";
-
-            // Charge les projets dans une liste
-            jsonkinezPAdûgizonn.forEach(projet => {
-                if (listeProjets[projet["competence"]]) {
-                    listeProjets[projet["competence"]].push(projet);
-                } else {
-                    listeProjets[projet["competence"]] = [projet];
-                }
-            });
+            listeProjets = jsonkinezPAdûgizonn;
             
             const MOIS = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "aout", "septembre", "octobre", "novembre", "décembre"]
 
-            Object.keys(listeProjets).forEach(key => {
-                listeProjets[key].sort((projetA, projetB) => {
-                    let dateA = projetA["date"];
-                    let dateB = projetB["date"];
+            listeProjets.sort((projetA, projetB) => {
+                let dateA = projetA["date"];
+                let dateB = projetB["date"];
 
-                    let valDateA = ("0" + MOIS.indexOf(dateA.split(" ")[0])).slice(-2); // récup la val du mois, et le met en 2 chiffres "00", "12"..
-                    valDateA = dateA.split(" ")[1] + valDateA;
-                    let valDateB = ("0" + MOIS.indexOf(dateB.split(" ")[0])).slice(-2);
-                    valDateB = dateB.split(" ")[1] + valDateB;
+                let valDateA = ("0" + MOIS.indexOf(dateA.split(" ")[0])).slice(-2); // récup la val du mois, et le met en 2 chiffres "00", "12"..
+                valDateA = dateA.split(" ")[1] + valDateA;
+                let valDateB = ("0" + MOIS.indexOf(dateB.split(" ")[0])).slice(-2);
+                valDateB = dateB.split(" ")[1] + valDateB;
 
-                    return Number.parseInt(valDateB) - Number.parseInt(valDateA);
-                });
+                return Number.parseInt(valDateB) - Number.parseInt(valDateA);
             });
             
-            let numComp = getQueryVariable("comp");
+            let numComp = Number.parseInt(getQueryVariable("comp"));
             chargerPage(numComp);
         </script>
 
