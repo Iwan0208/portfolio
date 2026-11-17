@@ -6,12 +6,15 @@
 
     <body>
         <header>
-            <a href="#footer">Me contacter</a>
-
             <ul>
-            <a href="competences.html"><li>Projets</li></a>
-            <a href="images/CV.pdf"><li>CV</li></a>
+                <a href=""><li>Accueil</li></a>
+                <a href="projets"><li>Projets</li></a>
+                <a href="#footer"><li>Me contacter</li></a>
             </ul>
+
+            <div>
+                <a href="images/CV.pdf" target="_blank">CV</a>
+            </div>
             
         </header>
         <br id="sous_header">
@@ -23,7 +26,7 @@
             </div>
 
 
-            <article>
+            <article class="presentation">
                 <h2>Qui suis-je ?</h2>
                 <p>
                     Je suis un étudiant en 3<sup>ème</sup> année de BUT Informatique à Lannion. 
@@ -32,77 +35,82 @@
                     Ma curiosité me pousse à en apprendre plus sur les langages de programmation.<br>
                     J'ai passé mon bac en 2024 au lycée Felix Le Dantec Lannion, avec les spécialités Numérique et Sciences de l'Informatique, et Mathématiques, et avec l'option Maths Expertes.
                 </p>
+                <p>
+                    Je suis actuellement à la recherche d'un stage qui débuterait le 22 mars 2027, et durerait 12 semaines.
+                </p>
             </article>
 
-            <article>
-                <h2>Mes compétences</h2>
-                <ul>
-                    <a href="competences.html?comp=1"><li>Développer une application</li></a>
-                    <a href="competences.html?comp=2"><li>Optimiser des applications informatiques</li></a>
-                    <a href="competences.html?comp=3"><li>Administrer des systèmes informatiques communicants complexes</li></a>
-                    <a href="competences.html?comp=4"><li>Gérer les données de l'information</li></a>
-                    <a href="competences.html?comp=5"><li>Conduire un projet</li></a>
-                    <a href="competences.html?comp=6"><li>Travailler dans une équipe informatique</li></a>
-                </ul>
-            </article>
+            <section>
+                <article>
+                    <h2>Mes compétences</h2>
+                    <ul>
+                        <a href="projets?comp=1"><li>Développer une application</li></a>
+                        <a href="projets?comp=4"><li>Gérer les données de l'information</li></a>
+                        <a href="projets?comp=5"><li>Conduire un projet</li></a>
+                        <a href="projets?comp=2"><li>Optimiser des applications informatiques</li></a>
+                        <a href="projets?comp=3"><li>Administrer des systèmes informatiques communicants complexes</li></a>
+                        <a href="projets?comp=6"><li>Travailler dans une équipe informatique</li></a>
+                    </ul>
+                </article>
 
-            <article id="techno">
-                <h2>Les langages et frameworks que je sais utiliser</h2>
-                <div>
+                <article id="techno">
+                    <h2>Les langages et frameworks que je sais utiliser</h2>
                     <div>
-                        <ul>
+                        <div>
                             <h3>Programmation</h3>
-                            <li><img class="icon_outil" src="icon/logo_python.svg">Python</li>
-                            <li><img class="icon_outil" src="icon/logo_c.svg">C</li>
-                            <li><img class="icon_outil" src="icon/logo_cpp.svg">C++</li>
-                            <li><img class="icon_outil" src="icon/logo_cs.svg">C#</li>
-                            <li><img class="icon_outil" src="icon/logo_java.svg">Java</li>
-                        </ul>
-                    </div>
+                            <ul>
+                                <li><img class="icon_outil" src="icon/logo_python.svg">Python</li>
+                                <li><img class="icon_outil" src="icon/logo_c.svg">C</li>
+                                <li><img class="icon_outil" src="icon/logo_cpp.svg">C++</li>
+                                <li><img class="icon_outil" src="icon/logo_cs.svg">C#</li>
+                                <li><img class="icon_outil" src="icon/logo_java.svg">Java</li>
+                            </ul>
+                        </div>
 
-                    <div>
-                        <ul>
+                        <div>
                             <h3>Web</h3>
-                            <li><img class="icon_outil" src="icon/logo_html.svg">HTML / CSS</li>
-                            <li><img class="icon_outil" src="icon/logo_php.svg">PHP</li>
-                            <li><img class="icon_outil" src="icon/logo_javascript.svg">JavaScript</li>
-                            <li><img class="icon_outil" src="icon/logo_bootstrap.svg">Bootstrap (CSS)</li>
-                        </ul>
-                    </div>
+                            <ul>
+                                <li><img class="icon_outil" src="icon/logo_html.svg">HTML / CSS</li>
+                                <li><img class="icon_outil" src="icon/logo_php.svg">PHP</li>
+                                <li><img class="icon_outil" src="icon/logo_javascript.svg">JavaScript</li>
+                                <li><img class="icon_outil" src="icon/logo_bootstrap.svg">Bootstrap (CSS)</li>
+                            </ul>
+                        </div>
 
-                    <div>
-                        <ul>
+                        <div>
                             <h3>Base de données</h3>
-                            <li><img class="icon_outil" src="icon/logo_sql.svg">SQL</li>
-                            <li><img class="icon_outil" src="icon/logo_mysql.svg">MySQL</li>
-                            <li><img class="icon_outil" src="icon/logo_postgresql.svg">PostgreSQL</li>
-                        </ul>
+                            <ul>
+                                <li><img class="icon_outil" src="icon/logo_sql.svg">SQL</li>
+                                <li><img class="icon_outil" src="icon/logo_mysql.svg">MySQL</li>
+                                <li><img class="icon_outil" src="icon/logo_postgresql.svg">PostgreSQL</li>
+                            </ul>
 
-                        <ul>
                             <h3>Système</h3>
-                            <li><img class="icon_outil" src="icon/logo_bash.svg">Shell / Bash</li>
-                        </ul>
+                            <ul>
+                                <li><img class="icon_outil" src="icon/logo_bash.svg">Shell / Bash</li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-            </article>
+                </article>
 
-            <article id="outils">
-                <h2>Outils que je sais utiliser</h2>
-                <ul>
-                    <li><img class="icon_outil" src="icon/logo_vsc.svg">VSC</li>
-                    <li><img class="icon_outil" src="icon/logo_linux.svg">Linux</li>
-                    <li><img class="icon_outil" src="icon/logo_github.svg">GitHub</li>
-                    <li><img class="icon_outil" src="icon/logo_docker.svg">Docker</li>
-                    <li><img class="icon_outil" src="icon/logo_figma.svg">Figma</li>
-                    <li><img class="icon_outil" src="icon/logo_apache.svg">Apache</li>
-                    <li><img class="icon_outil" src="icon/logo_scenebuilder.png">SceneBuilder</li>
-                </ul>
-            </article>
+                <article id="outils">
+                    <h2>Outils que je sais utiliser</h2>
+                    <ul>
+                        <li><img class="icon_outil" src="icon/logo_vsc.svg">VSC</li>
+                        <li><img class="icon_outil" src="icon/logo_linux.svg">Linux</li>
+                        <li><img class="icon_outil" src="icon/logo_github.svg">GitHub</li>
+                        <li><img class="icon_outil" src="icon/logo_docker.svg">Docker</li>
+                        <li><img class="icon_outil" src="icon/logo_figma.svg">Figma</li>
+                        <li><img class="icon_outil" src="icon/logo_apache.svg">Apache</li>
+                        <li><img class="icon_outil" src="icon/logo_scenebuilder.png">SceneBuilder</li>
+                    </ul>
+                </article>
+            </section>
         </main>
 
         <footer id="footer">
             <h3>Contacts</h3>
-            <a href="mailto:villalard.iwan@outlook.com">Email <img class="icon" src="images/icone_mail.png"></a>
+            <a href="mailto:iwan.villalard@gmail.com">Email <img class="icon" src="images/icone_mail.png"></a>
             <a href="https://www.linkedin.com/in/iwan-villalard-727717356/">LinkedIn <img class="icon" src="images/mail_linkedin.png"></a>
         </footer>
     </body>
